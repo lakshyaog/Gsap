@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Cyberpunk';
+  src: url('https://fonts.cdnfonts.com/s/46434/Cyberpunk.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --cyberpunk-yellow: #fcee0a;
+  --cyberpunk-cyan: #00f0ff;
+  --cyberpunk-pink: #ff006e;
+  --cyberpunk-purple: #b537f2;
 }
 
 @theme inline {
@@ -20,7 +31,8 @@
 }
 
 body {
-  background: var(--background);
+  background: transparent;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
