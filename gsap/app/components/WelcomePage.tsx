@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 declare global {
   interface Window {
@@ -9,13 +10,10 @@ declare global {
 }
 
 export default function WelcomePage() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const titleRef = useRef<HTMLDivElement>(null);
   const welcomeRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
-  const glitchRef = useRef<HTMLDivElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const lettersRef = useRef<HTMLSpanElement[]>([]);
 
   useEffect(() => {
     const checkGsap = setInterval(() => {
@@ -23,263 +21,266 @@ export default function WelcomePage() {
         clearInterval(checkGsap);
         const gsap = window.gsap;
 
-        // Set initial states
-        gsap.set(titleRef.current, { opacity: 0 });
-        gsap.set(welcomeRef.current, { opacity: 0, scale: 0.8 });
-        gsap.set(subtitleRef.current, { opacity: 0, y: 30 });
-        gsap.set(cursorRef.current, { opacity: 0 });
-        gsap.set(lettersRef.current, {
-          opacity: 0,
-          y: 100,
-          rotationX: -90,
-          transformOrigin: '50% 50%',
+        // Fade + Motion Parallax Timeline with improved timing
+        const tl = gsap.timeline({
+          onComplete: () => {
+            // Exit animation sequence
+            const exitTl = gsap.timeline({
+              onComplete: () => {
+                router.push('/main');
+              }
+            });
+
+            // Animate text elements out with stagger
+            exitTl
+              .to(titleRef.current, {
+                y: -100,
+                opacity: 0,
+                scale: 1.2,
+                rotationX: 20,
+                duration: 1,
+                ease: 'power3.in'
+              })
+              .to(welcomeRef.current, {
+                y: -80,
+                opacity: 0,
+                scale: 1.15,
+                rotationX: 15,
+                duration: 0.9,
+                ease: 'power3.in'
+              }, '-=0.7')
+              .to(subtitleRef.current, {
+                y: -60,
+                opacity: 0,
+                scale: 1.1,
+                rotationX: 10,
+                duration: 0.8,
+                ease: 'power3.in'
+              }, '-=0.6')
+              .to('.welcome-container', {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.5,
+                ease: 'power2.in'
+              }, '-=0.4');
+          }
         });
 
-        // Complex entrance timeline
-        const mainTimeline = gsap.timeline();
-
-        // Rapid glitch sequence
-        mainTimeline
-          .to(glitchRef.current, {
-            opacity: 0.8,
-            x: -5,
-            duration: 0.03,
-            ease: 'steps(1)',
-          })
-          .to(glitchRef.current, {
-            x: 5,
-            duration: 0.03,
-          })
-          .to(glitchRef.current, {
-            x: -3,
-            duration: 0.03,
-          })
-          .to(glitchRef.current, {
+        // Title - Fade in with parallax motion (slow movement)
+        tl.fromTo(titleRef.current, 
+          {
             opacity: 0,
-            x: 0,
-            duration: 0.05,
-          })
-          // Reveal title container
-          .to(titleRef.current, {
-            opacity: 1,
-            duration: 0.5,
-            ease: 'power2.in',
-          })
-          // Sophisticated letter animation with 3D effects
-          .to(lettersRef.current, {
+            y: 150,
+            scale: 0.8
+          },
+          {
             opacity: 1,
             y: 0,
-            rotationX: 0,
-            stagger: {
-              each: 0.12,
-              from: 'center',
-              ease: 'back.out(2)',
-            },
-            duration: 1.2,
-            ease: 'expo.out',
-          }, '-=0.3')
-          // Welcome text reveal with scale
-          .to(welcomeRef.current, {
-            opacity: 1,
             scale: 1,
-            duration: 0.8,
-            ease: 'back.out(1.7)',
-          }, '-=0.3')
-          // Cursor appear
-          .to(cursorRef.current, {
-            opacity: 1,
-            duration: 0.1,
-          })
-          // Subtitle slide up
-          .to(subtitleRef.current, {
+            duration: 2.5,
+            ease: 'power4.out'
+          }
+        )
+        // Welcome - Fade in with parallax motion (medium speed)
+        .fromTo(welcomeRef.current,
+          {
+            opacity: 0,
+            y: 100,
+            scale: 0.9
+          },
+          {
             opacity: 1,
             y: 0,
-            duration: 1,
-            ease: 'power3.out',
-          }, '-=0.5');
+            scale: 1,
+            duration: 2.2,
+            ease: 'power3.out'
+          },
+          '-=1.8'
+        )
+        // Subtitle - Fade in with parallax motion (fast movement)
+        .fromTo(subtitleRef.current,
+          {
+            opacity: 0,
+            y: 80,
+            scale: 0.95
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.8,
+            ease: 'power2.out'
+          },
+          '-=1.6'
+        );
 
-        // Cursor blink only
-        gsap.to(cursorRef.current, {
-          opacity: 0,
-          duration: 0.5,
+        // Add subtle floating animation to elements
+        gsap.to(titleRef.current, {
+          y: -10,
+          duration: 3,
           repeat: -1,
           yoyo: true,
-          ease: 'steps(1)',
-          delay: 2.5,
+          ease: 'sine.inOut',
+          delay: 3
         });
 
-        // Occasional glitch on random letters
-        const glitchInterval = setInterval(() => {
-          if (Math.random() > 0.8 && lettersRef.current.length > 0) {
-            const randomLetter = lettersRef.current[Math.floor(Math.random() * lettersRef.current.length)];
-            gsap.timeline()
-              .to(randomLetter, {
-                x: gsap.utils.random(-2, 2),
-                opacity: 0.5,
-                duration: 0.05,
-              })
-              .to(randomLetter, {
-                x: 0,
-                opacity: 1,
-                duration: 0.05,
-              });
-          }
-        }, 4000);
+        gsap.to(welcomeRef.current, {
+          y: -8,
+          duration: 3.5,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: 3.2
+        });
 
-        return () => {
-          clearInterval(glitchInterval);
-        };
+        gsap.to(subtitleRef.current, {
+          y: -6,
+          duration: 4,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: 3.4
+        });
       }
     }, 100);
 
     return () => clearInterval(checkGsap);
-  }, []);
-
-  const splitText = (text: string) => {
-    return text.split('').map((char, index) => (
-      <span
-        key={index}
-        ref={(el) => {
-          if (el) lettersRef.current[index] = el;
-        }}
-        style={{
-          display: 'inline-block',
-          opacity: 0,
-          transform: 'translateY(50px) rotateX(-90deg)',
-        }}
-      >
-        {char}
-      </span>
-    ));
-  };
+  }, [router]);
 
   return (
-    <div
-      ref={containerRef}
-      className="flex min-h-screen items-center justify-center relative z-10"
-    >
-      {/* Scanlines overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-10"
-        style={{
-          background: 'repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0px, rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px)',
-        }}
-      />
-
+    <div className="flex min-h-screen items-center justify-center relative z-10 welcome-container">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#0a1628]/30 to-transparent pointer-events-none" />
+      
       <div className="text-center px-8 relative">
-        {/* Glitch overlay */}
-        <div
-          ref={glitchRef}
-          className="absolute inset-0 flex flex-col items-center justify-center"
+        {/* Main title with fade + parallax */}
+        <div 
+          ref={titleRef} 
+          className="mb-12"
           style={{
             opacity: 0,
-            mixBlendMode: 'difference',
+            transform: 'translateY(150px) scale(0.8)'
           }}
         >
           <h1
-            className="text-7xl sm:text-8xl md:text-9xl font-bold tracking-widest mb-4"
+            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-none transition-all duration-300 hover:scale-105 cursor-default"
             style={{
-              fontFamily: 'Orbitron, sans-serif',
-              color: '#4a90e2',
+              fontFamily: 'Bungee, sans-serif',
+              fontWeight: 400,
+              color: '#5dade2',
+              textShadow: `
+                0 0 20px rgba(93, 173, 226, 0.8),
+                0 0 40px rgba(93, 173, 226, 0.5),
+                0 0 60px rgba(93, 173, 226, 0.3)
+              `,
+              WebkitTextStroke: '1px rgba(133, 193, 233, 0.4)',
+              letterSpacing: 'normal'
             }}
           >
             ANIXYA
           </h1>
         </div>
 
-        {/* Main title */}
-        <div ref={titleRef} className="mb-16">
-          <h1
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-widest leading-none"
-            style={{
-              fontFamily: 'Orbitron, sans-serif',
-              fontWeight: 900,
-              color: '#5dade2',
-              textShadow: `
-                0 0 15px rgba(93, 173, 226, 0.6),
-                0 0 30px rgba(93, 173, 226, 0.4)
-              `,
-              WebkitTextStroke: '1.5px rgba(133, 193, 233, 0.3)',
-              paintOrder: 'stroke fill',
-            }}
-          >
-            {splitText('ANIXYA')}
-          </h1>
-        </div>
-
-        {/* Welcome text with typing effect */}
-        <div ref={welcomeRef} className="mb-8" style={{ opacity: 0 }}>
+        {/* Welcome text with fade + parallax */}
+        <div 
+          ref={welcomeRef} 
+          className="mb-6"
+          style={{
+            opacity: 0,
+            transform: 'translateY(100px) scale(0.9)'
+          }}
+        >
           <p
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-wide"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-wide transition-all duration-300 hover:scale-105 cursor-default"
             style={{
-              fontFamily: 'Orbitron, sans-serif',
-              fontWeight: 700,
+              fontFamily: 'Bungee, sans-serif',
+              fontWeight: 400,
               color: '#85c1e9',
               textShadow: `
-                0 0 10px rgba(133, 193, 233, 0.5),
-                0 0 20px rgba(133, 193, 233, 0.3)
+                0 0 15px rgba(133, 193, 233, 0.7),
+                0 0 30px rgba(133, 193, 233, 0.4)
               `,
             }}
           >
             WELCOME
-            <span
-              ref={cursorRef}
-              style={{
-                color: '#5dade2',
-                opacity: 0,
-              }}
-            >
-              _
-            </span>
           </p>
         </div>
 
-        {/* Subtitle */}
+        {/* Subtitle with fade + parallax */}
         <div
           ref={subtitleRef}
           style={{
             opacity: 0,
-            transform: 'translateY(20px)',
+            transform: 'translateY(80px) scale(0.95)'
           }}
         >
           <p
-            className="text-base sm:text-lg md:text-xl lg:text-2xl tracking-widest mb-10"
+            className="text-sm sm:text-base md:text-lg lg:text-xl tracking-wider mb-10 transition-all duration-300 hover:text-[#5dade2] cursor-default"
             style={{
-              fontFamily: 'Orbitron, sans-serif',
-              fontWeight: 600,
+              fontFamily: 'Bungee, sans-serif',
+              fontWeight: 400,
               color: '#aed6f1',
               textShadow: `
-                0 0 8px rgba(174, 214, 241, 0.4),
-                0 0 16px rgba(174, 214, 241, 0.2)
+                0 0 10px rgba(174, 214, 241, 0.6),
+                0 0 20px rgba(174, 214, 241, 0.3)
               `,
+              letterSpacing: '0.15em'
             }}
           >
             THE PLACE WHERE OTAKUS BELONG
           </p>
 
-          {/* Decorative lines */}
-          <div className="flex justify-center items-center gap-6">
+          {/* Decorative lines with animation */}
+          <div className="flex justify-center items-center gap-6 mt-8">
             <div
-              className="w-24 sm:w-32 md:w-40 h-0.5"
+              className="w-24 sm:w-32 md:w-40 h-0.5 animate-pulse"
               style={{
-                background: 'linear-gradient(90deg, transparent, rgba(93, 173, 226, 0.6), transparent)',
-                boxShadow: '0 0 8px rgba(93, 173, 226, 0.4)',
+                background: 'linear-gradient(90deg, transparent, rgba(93, 173, 226, 0.8), transparent)',
+                boxShadow: '0 0 10px rgba(93, 173, 226, 0.6)',
               }}
             />
             <div
-              className="w-2.5 h-2.5 rotate-45"
+              className="w-3 h-3 rotate-45 animate-spin"
               style={{
                 background: '#5dade2',
-                boxShadow: '0 0 12px rgba(93, 173, 226, 0.6)',
+                boxShadow: '0 0 15px rgba(93, 173, 226, 0.8)',
+                animation: 'spin 4s linear infinite'
               }}
             />
             <div
-              className="w-24 sm:w-32 md:w-40 h-0.5"
+              className="w-24 sm:w-32 md:w-40 h-0.5 animate-pulse"
               style={{
-                background: 'linear-gradient(90deg, transparent, rgba(133, 193, 233, 0.6), transparent)',
-                boxShadow: '0 0 8px rgba(133, 193, 233, 0.4)',
+                background: 'linear-gradient(90deg, transparent, rgba(133, 193, 233, 0.8), transparent)',
+                boxShadow: '0 0 10px rgba(133, 193, 233, 0.6)',
               }}
             />
+          </div>
+
+          {/* Loading indicator */}
+          <div className="mt-12 flex justify-center">
+            <div className="flex gap-2">
+              <div 
+                className="w-2 h-2 rounded-full bg-[#5dade2]"
+                style={{
+                  animation: 'pulse 1.5s ease-in-out infinite',
+                  boxShadow: '0 0 10px rgba(93, 173, 226, 0.8)'
+                }}
+              />
+              <div 
+                className="w-2 h-2 rounded-full bg-[#85c1e9]"
+                style={{
+                  animation: 'pulse 1.5s ease-in-out 0.2s infinite',
+                  boxShadow: '0 0 10px rgba(133, 193, 233, 0.8)'
+                }}
+              />
+              <div 
+                className="w-2 h-2 rounded-full bg-[#aed6f1]"
+                style={{
+                  animation: 'pulse 1.5s ease-in-out 0.4s infinite',
+                  boxShadow: '0 0 10px rgba(174, 214, 241, 0.8)'
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
