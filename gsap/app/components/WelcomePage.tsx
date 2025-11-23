@@ -163,18 +163,17 @@ export default function WelcomePage() {
           }}
         >
           <h1
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-none transition-all duration-300 hover:scale-105 cursor-default"
+            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-none transition-all duration-300 hover:scale-105 cursor-default text-center"
             style={{
-              fontFamily: 'Bungee, sans-serif',
-              fontWeight: 400,
-              color: '#5dade2',
+              fontFamily: 'Orbitron, monospace',
+              fontWeight: 700,
+              color: '#f4a7b9',
               textShadow: `
-                0 0 20px rgba(93, 173, 226, 0.8),
-                0 0 40px rgba(93, 173, 226, 0.5),
-                0 0 60px rgba(93, 173, 226, 0.3)
+                0 0 15px rgba(244, 167, 185, 0.4),
+                0 0 25px rgba(244, 167, 185, 0.2)
               `,
-              WebkitTextStroke: '1px rgba(133, 193, 233, 0.4)',
-              letterSpacing: 'normal'
+              WebkitTextStroke: '1px rgba(255, 192, 203, 0.2)',
+              letterSpacing: '0.05em'
             }}
           >
             ANIXYA
@@ -191,15 +190,16 @@ export default function WelcomePage() {
           }}
         >
           <p
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-wide transition-all duration-300 hover:scale-105 cursor-default"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-wide transition-all duration-300 hover:scale-105 cursor-default text-center"
             style={{
-              fontFamily: 'Bungee, sans-serif',
-              fontWeight: 400,
-              color: '#85c1e9',
+              fontFamily: 'Orbitron, monospace',
+              fontWeight: 600,
+              color: '#ffb6c1',
               textShadow: `
-                0 0 15px rgba(133, 193, 233, 0.7),
-                0 0 30px rgba(133, 193, 233, 0.4)
+                0 0 10px rgba(255, 182, 193, 0.3),
+                0 0 20px rgba(255, 182, 193, 0.15)
               `,
+              letterSpacing: '0.1em'
             }}
           >
             WELCOME
@@ -215,19 +215,20 @@ export default function WelcomePage() {
           }}
         >
           <p
-            className="text-sm sm:text-base md:text-lg lg:text-xl tracking-wider mb-10 transition-all duration-300 hover:text-[#5dade2] cursor-default"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl tracking-wider mb-10 transition-all duration-300 hover:text-[#ffc0cb] cursor-default uppercase text-center"
             style={{
-              fontFamily: 'Bungee, sans-serif',
-              fontWeight: 400,
-              color: '#aed6f1',
+              fontFamily: 'Orbitron, monospace',
+              fontWeight: 500,
+              color: '#ffd1dc',
               textShadow: `
-                0 0 10px rgba(174, 214, 241, 0.6),
-                0 0 20px rgba(174, 214, 241, 0.3)
+                0 0 8px rgba(255, 209, 220, 0.25),
+                0 0 15px rgba(255, 209, 220, 0.12)
               `,
-              letterSpacing: '0.15em'
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase'
             }}
           >
-            THE PLACE WHERE OTAKUS BELONG
+            EXPLORE • WATCH • ENJOY
           </p>
 
           {/* Decorative lines with animation */}
@@ -235,23 +236,23 @@ export default function WelcomePage() {
             <div
               className="w-24 sm:w-32 md:w-40 h-0.5 animate-pulse"
               style={{
-                background: 'linear-gradient(90deg, transparent, rgba(93, 173, 226, 0.8), transparent)',
-                boxShadow: '0 0 10px rgba(93, 173, 226, 0.6)',
+                background: 'linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.4), transparent)',
+                boxShadow: '0 0 8px rgba(255, 182, 193, 0.3)',
               }}
             />
             <div
               className="w-3 h-3 rotate-45 animate-spin"
               style={{
-                background: '#5dade2',
-                boxShadow: '0 0 15px rgba(93, 173, 226, 0.8)',
+                background: '#ffb6c1',
+                boxShadow: '0 0 10px rgba(255, 182, 193, 0.4)',
                 animation: 'spin 4s linear infinite'
               }}
             />
             <div
               className="w-24 sm:w-32 md:w-40 h-0.5 animate-pulse"
               style={{
-                background: 'linear-gradient(90deg, transparent, rgba(133, 193, 233, 0.8), transparent)',
-                boxShadow: '0 0 10px rgba(133, 193, 233, 0.6)',
+                background: 'linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.4), transparent)',
+                boxShadow: '0 0 8px rgba(255, 182, 193, 0.3)',
               }}
             />
           </div>
@@ -260,24 +261,24 @@ export default function WelcomePage() {
           <div className="mt-12 flex justify-center">
             <div className="flex gap-2">
               <div 
-                className="w-2 h-2 rounded-full bg-[#5dade2]"
+                className="w-2 h-2 rounded-full bg-[#f4a7b9]"
                 style={{
                   animation: 'pulse 1.5s ease-in-out infinite',
-                  boxShadow: '0 0 10px rgba(93, 173, 226, 0.8)'
+                  boxShadow: '0 0 8px rgba(244, 167, 185, 0.4)'
                 }}
               />
               <div 
-                className="w-2 h-2 rounded-full bg-[#85c1e9]"
+                className="w-2 h-2 rounded-full bg-[#ffb6c1]"
                 style={{
                   animation: 'pulse 1.5s ease-in-out 0.2s infinite',
-                  boxShadow: '0 0 10px rgba(133, 193, 233, 0.8)'
+                  boxShadow: '0 0 8px rgba(255, 182, 193, 0.4)'
                 }}
               />
               <div 
-                className="w-2 h-2 rounded-full bg-[#aed6f1]"
+                className="w-2 h-2 rounded-full bg-[#ffd1dc]"
                 style={{
                   animation: 'pulse 1.5s ease-in-out 0.4s infinite',
-                  boxShadow: '0 0 10px rgba(174, 214, 241, 0.8)'
+                  boxShadow: '0 0 8px rgba(255, 209, 220, 0.4)'
                 }}
               />
             </div>

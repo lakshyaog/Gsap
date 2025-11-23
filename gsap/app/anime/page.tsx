@@ -4,6 +4,7 @@ import VantaClouds from '../components/VantaClouds';
 import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { CardBody, CardContainer, CardItem } from '../components/ui/3d-card';
+import EveryButton from '../components/ui/EveryButton';
 
 declare global {
   interface Window {
@@ -135,12 +136,9 @@ export default function AnimePage() {
             >
               ANIXYA
             </h1>
-            <button
-              onClick={() => router.push('/main')}
-              className="bg-white/20 backdrop-blur-md px-6 py-2 rounded-lg text-black font-semibold hover:bg-white/30 transition-all border border-black/20"
-            >
+            <EveryButton onClick={() => router.push('/main')}>
               ← Back to Home
-            </button>
+            </EveryButton>
           </div>
         </nav>
 
@@ -243,9 +241,9 @@ export default function AnimePage() {
               <p className="text-xl text-black/80 mb-8">
                 We're constantly adding new anime to our collection
               </p>
-              <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105">
+              <EveryButton>
                 Request Anime
-              </button>
+              </EveryButton>
             </div>
           </div>
         </section>
