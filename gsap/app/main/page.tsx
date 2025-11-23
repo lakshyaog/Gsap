@@ -21,7 +21,7 @@ export default function Main() {
     {
       title: 'Naruto: Legends Unite',
       description: 'Join Naruto and his friends on an epic journey through the Hidden Leaf Village and beyond.',
-      image: '/naruto1.png'
+      image: '/N.jpeg'
     },
     {
       title: 'One Piece: Grand Adventure',
