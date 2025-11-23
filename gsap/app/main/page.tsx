@@ -2,6 +2,7 @@
 
 import VantaClouds from '../components/VantaClouds';
 import { useState, useEffect, useRef } from 'react';
+import EveryButton from '../components/ui/EveryButton';
 import { useRouter } from 'next/navigation';
 
 declare global {
@@ -114,12 +115,9 @@ export default function Main() {
         <nav className="p-6 absolute top-0 left-0 right-0" style={{ zIndex: 20 }}>
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <h1 className="text-3xl font-bold text-black font-[Bungee]">ANIXYA</h1>
-            <button
-              onClick={() => router.push('/anime')}
-              className="bg-white/20 backdrop-blur-md px-6 py-2 rounded-lg text-black font-semibold hover:bg-white/30 transition-all border border-black/20"
-            >
+            <EveryButton onClick={() => router.push('/anime')}>
               Browse Anime →
-            </button>
+            </EveryButton>
           </div>
         </nav>
 
@@ -212,37 +210,6 @@ export default function Main() {
                   />
                 ))}
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Features */}
-        <section ref={featuresRef} className="max-w-7xl mx-auto px-6 py-32">
-          <h2 className="text-4xl font-bold mb-16 text-black font-[Bungee]">Explore Features</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div 
-              ref={(el) => { if (el) featureCardsRef.current[0] = el; }}
-              className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-black/20 hover:border-black/40 transition-all hover:bg-white/15 hover:shadow-2xl"
-            >
-              <div className="text-5xl mb-4">🔥</div>
-              <h3 className="text-2xl font-bold mb-4 text-black font-[Bungee]">Latest Releases</h3>
-              <p className="text-black">Stay updated with the newest anime releases and episodes</p>
-            </div>
-            <div 
-              ref={(el) => { if (el) featureCardsRef.current[1] = el; }}
-              className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-black/20 hover:border-black/40 transition-all hover:bg-white/15 hover:shadow-2xl"
-            >
-              <div className="text-5xl mb-4">👥</div>
-              <h3 className="text-2xl font-bold mb-4 text-black font-[Bungee]">Community</h3>
-              <p className="text-black">Connect with fellow otakus and share your passion</p>
-            </div>
-            <div 
-              ref={(el) => { if (el) featureCardsRef.current[2] = el; }}
-              className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-black/20 hover:border-black/40 transition-all hover:bg-white/15 hover:shadow-2xl"
-            >
-              <div className="text-5xl mb-4">⭐</div>
-              <h3 className="text-2xl font-bold mb-4 text-black font-[Bungee]">Recommendations</h3>
-              <p className="text-black">Get personalized anime suggestions based on your taste</p>
             </div>
           </div>
         </section>
