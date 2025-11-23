@@ -18,8 +18,8 @@ export default function AnimePage() {
   const animeCardsRef = useRef<HTMLDivElement[]>([]);
 
   const animeList = [
-    { id: 1, title: 'Attack on Titan', image: '' },
-    { id: 2, title: 'Naruto / Naruto Shippuden', image: '' },
+    { id: 1, title: 'Attack on Titan', image: '/attackontitan.jpeg' },
+    { id: 2, title: 'Naruto / Naruto Shippuden', image: '/N.jpeg' },
     { id: 3, title: 'One Piece', image: '' },
     { id: 4, title: 'Demon Slayer (Kimetsu no Yaiba)', image: '' },
     { id: 5, title: 'Jujutsu Kaisen', image: '' },
@@ -59,24 +59,25 @@ export default function AnimePage() {
 
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animate each anime card on scroll
+        // Animate each anime card on scroll - alternating from left and right
         animeCardsRef.current.forEach((card, index) => {
           if (card) {
-            // Stagger animation based on position
-            const delay = (index % 5) * 0.1;
+            // Alternate between left and right
+            const fromLeft = index % 2 === 0;
             
             gsap.from(card, {
               scrollTrigger: {
                 trigger: card,
-                start: 'top bottom-=50',
-                end: 'top center',
-                scrub: 1,
+                start: 'top bottom',
+                end: 'top center+=100',
+                scrub: 2,
+                toggleActions: 'play none none reverse',
               },
-              y: 100,
+              x: fromLeft ? -1000 : 1000,
               opacity: 0,
-              scale: 0.8,
-              rotation: index % 2 === 0 ? -10 : 10,
-              delay,
+              rotation: fromLeft ? -20 : 20,
+              scale: 0.5,
+              ease: 'power2.out',
             });
 
             // Hover effect enhancement with GSAP
@@ -169,44 +170,60 @@ export default function AnimePage() {
                   className="flex justify-center"
                 >
                   <CardContainer className="inter-var w-full max-w-md">
-                    <CardBody className="bg-white/10 backdrop-blur-md relative group/card dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1] border-black w-full h-auto rounded-xl p-6 border-4">
-                      <CardItem
-                        translateZ="50"
-                        className="text-xl font-bold text-black dark:text-white font-[Bungee]"
-                      >
-                        {anime.title}
-                      </CardItem>
-                      <CardItem
-                        as="p"
-                        translateZ="60"
-                        className="text-black/70 text-sm max-w-sm mt-2 dark:text-neutral-300"
-                      >
-                        Hover over this card to see the 3D effect
-                      </CardItem>
-                      <CardItem translateZ="100" className="w-full mt-4">
-                        <div className="h-48 w-full bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-xl group-hover/card:shadow-xl flex items-center justify-center">
-                          <div className="text-6xl">🎬</div>
+                    <CardBody className="relative group/card w-full h-auto rounded-xl overflow-hidden border-4 border-black">
+                      {/* Background Image */}
+                      {anime.image ? (
+                        <div 
+                          className="absolute inset-0 bg-contain bg-center bg-no-repeat"
+                          style={{ backgroundImage: `url(${anime.image})` }}
+                        />
+                      ) : (
+                        <div className="absolute inset-0 bg-linear-to-br from-blue-500/30 to-purple-500/30 flex items-center justify-center">
+                          <div className="text-9xl">🎬</div>
                         </div>
-                      </CardItem>
-                      <div className="flex justify-between items-center mt-6">
+                      )}
+                      
+                      {/* Subtle overlay for depth */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      
+                      {/* Content */}
+                      <div className="relative p-6 min-h-[500px] flex flex-col justify-end">
                         <CardItem
-                          translateZ={20}
-                          className="px-4 py-2 rounded-xl text-xs font-normal text-black dark:text-white flex items-center gap-2"
+                          translateZ="50"
+                          className="text-xl font-bold text-white px-4 py-2 rounded-lg mb-3 inline-block font-[Bungee]"
+                          style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.9)' }}
                         >
-                          <span>⭐ 4.8</span>
-                          <span>•</span>
-                          <span>#{anime.id}</span>
+                          {anime.title}
                         </CardItem>
                         <CardItem
-                          translateZ={20}
-                          as="button"
-                          className="px-6 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold flex items-center gap-2 transition-colors"
+                          as="p"
+                          translateZ="60"
+                          className="text-white/90 px-4 py-2 rounded-lg text-sm mb-4"
+                          style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}
                         >
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                          Watch Now
+                          Hover over this card to see the 3D effect
                         </CardItem>
+                        <div className="flex justify-between items-center">
+                          <CardItem
+                            translateZ={20}
+                            className="px-4 py-2 rounded-xl text-xs font-bold text-white flex items-center gap-2"
+                            style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}
+                          >
+                            <span>⭐ 4.8</span>
+                            <span>•</span>
+                            <span>#{anime.id}</span>
+                          </CardItem>
+                          <CardItem
+                            translateZ={20}
+                            as="button"
+                            className="px-6 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold flex items-center gap-2 transition-colors shadow-lg"
+                          >
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            Watch Now
+                          </CardItem>
+                        </div>
                       </div>
                     </CardBody>
                   </CardContainer>
