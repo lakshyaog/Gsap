@@ -148,22 +148,37 @@ export default function WelcomePage() {
   }, [router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center relative z-10 welcome-container">
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#0a1628]/30 to-transparent pointer-events-none" />
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/bg.mp4" type="video/mp4" />
+      </video>
       
-      <div className="text-center px-8 relative">
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/40 z-0" />
+
+      <div className="flex min-h-screen items-center justify-center relative z-10 welcome-container">
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#0a1628]/30 to-transparent pointer-events-none" />
+      
+      <div className="text-center px-4 sm:px-8 relative max-w-7xl mx-auto">
         {/* Main title with fade + parallax */}
         <div 
           ref={titleRef} 
-          className="mb-12"
+          className="mb-8 sm:mb-12"
           style={{
             opacity: 0,
             transform: 'translateY(150px) scale(0.8)'
           }}
         >
           <h1
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-none transition-all duration-300 hover:scale-105 cursor-default text-center"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-none transition-all duration-300 hover:scale-105 cursor-default text-center"
             style={{
               fontFamily: 'Orbitron, monospace',
               fontWeight: 700,
@@ -183,14 +198,14 @@ export default function WelcomePage() {
         {/* Welcome text with fade + parallax */}
         <div 
           ref={welcomeRef} 
-          className="mb-6"
+          className="mb-4 sm:mb-6"
           style={{
             opacity: 0,
             transform: 'translateY(100px) scale(0.9)'
           }}
         >
           <p
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-wide transition-all duration-300 hover:scale-105 cursor-default text-center"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wide transition-all duration-300 hover:scale-105 cursor-default text-center"
             style={{
               fontFamily: 'Orbitron, monospace',
               fontWeight: 600,
@@ -215,7 +230,7 @@ export default function WelcomePage() {
           }}
         >
           <p
-            className="text-base sm:text-lg md:text-xl lg:text-2xl tracking-wider mb-10 transition-all duration-300 hover:text-[#ffc0cb] cursor-default uppercase text-center"
+            className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl tracking-wider mb-6 sm:mb-10 transition-all duration-300 hover:text-[#ffc0cb] cursor-default uppercase text-center"
             style={{
               fontFamily: 'Orbitron, monospace',
               fontWeight: 500,
@@ -232,16 +247,16 @@ export default function WelcomePage() {
           </p>
 
           {/* Decorative lines with animation */}
-          <div className="flex justify-center items-center gap-6 mt-8">
+          <div className="flex justify-center items-center gap-3 sm:gap-6 mt-6 sm:mt-8">
             <div
-              className="w-24 sm:w-32 md:w-40 h-0.5 animate-pulse"
+              className="w-16 sm:w-24 md:w-32 lg:w-40 h-0.5 animate-pulse"
               style={{
                 background: 'linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.4), transparent)',
                 boxShadow: '0 0 8px rgba(255, 182, 193, 0.3)',
               }}
             />
             <div
-              className="w-3 h-3 rotate-45 animate-spin"
+              className="w-2 h-2 sm:w-3 sm:h-3 rotate-45 animate-spin"
               style={{
                 background: '#ffb6c1',
                 boxShadow: '0 0 10px rgba(255, 182, 193, 0.4)',
@@ -249,7 +264,7 @@ export default function WelcomePage() {
               }}
             />
             <div
-              className="w-24 sm:w-32 md:w-40 h-0.5 animate-pulse"
+              className="w-16 sm:w-24 md:w-32 lg:w-40 h-0.5 animate-pulse"
               style={{
                 background: 'linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.4), transparent)',
                 boxShadow: '0 0 8px rgba(255, 182, 193, 0.3)',
@@ -258,7 +273,7 @@ export default function WelcomePage() {
           </div>
 
           {/* Loading indicator */}
-          <div className="mt-12 flex justify-center">
+          <div className="mt-8 sm:mt-12 flex justify-center">
             <div className="flex gap-2">
               <div 
                 className="w-2 h-2 rounded-full bg-[#f4a7b9]"
@@ -285,6 +300,7 @@ export default function WelcomePage() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
