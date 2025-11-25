@@ -32,6 +32,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{ fontFamily: 'Aptos, system-ui, -apple-system, sans-serif' }}
       >
         {children}
       </body>
