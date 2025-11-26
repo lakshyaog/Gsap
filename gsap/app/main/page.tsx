@@ -344,6 +344,116 @@ export default function Main() {
             </div>
           </div>
         </section>
+
+        {/* About ANIXYA Section */}
+        <section className="py-16 px-4 sm:px-6 md:px-12 lg:px-20 bg-linear-to-b from-transparent to-black/20 backdrop-blur-sm">
+          <div className="max-w-5xl mx-auto space-y-12">
+            {/* Main Heading */}
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+                ANIXYA – The best site to watch anime online for Free
+              </h2>
+              <p className="text-base sm:text-lg text-white/90 leading-relaxed">
+                Do you know that according to Google, the monthly search volume for anime related topics is up to over 1 Billion times? Anime is famous worldwide and it is no wonder we&apos;ve seen a sharp rise in the number of free anime streaming sites.
+              </p>
+              <p className="text-base sm:text-lg text-white/90 leading-relaxed">
+                Just like free online movie streaming sites, anime watching sites are not created equally, some are better than the rest, so we&apos;ve decided to build ANIXYA to be one of the best free anime streaming site for all anime fans on the world.
+              </p>
+            </div>
+
+            {/* What is ANIXYA */}
+            <div className="space-y-4 bg-white/5 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/10">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white">1/ What is ANIXYA?</h3>
+              <p className="text-base sm:text-lg text-white/90 leading-relaxed">
+                ANIXYA is a free site to watch anime and you can even download subbed or dubbed anime in ultra HD quality without any registration or payment. By having only one ads in all kinds, we are trying to make it the safest site for free anime.
+              </p>
+            </div>
+
+            {/* Is ANIXYA Safe */}
+            <div className="space-y-4 bg-white/5 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/10">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white">2/ Is ANIXYA safe?</h3>
+              <p className="text-base sm:text-lg text-white/90 leading-relaxed">
+                Yes we are, we do have only one Ads to cover the server cost and we keep scanning the ads 24/7 to make sure all are clean. If you find any ads that is suspicious, please forward us the info and we will remove it.
+              </p>
+            </div>
+
+            {/* What makes ANIXYA the best */}
+            <div className="space-y-6 bg-white/5 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/10">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white">
+                3/ So what make ANIXYA the best site to watch anime free online?
+              </h3>
+              <p className="text-base sm:text-lg text-white/90 leading-relaxed">
+                Before building ANIXYA, we&apos;ve checked many other free anime sites, and learnt from them. We only keep the good things and remove all the bad things from all the competitors, to put it in our ANIXYA website. Let&apos;s see how we&apos;re so confident about being the best site for anime streaming:
+              </p>
+              
+              <ul className="space-y-4 text-white/90">
+                <li className="space-y-2">
+                  <strong className="text-white text-lg">Safety:</strong>
+                  <p className="text-base sm:text-lg leading-relaxed">We try our best to not having harmful ads on ANIXYA.</p>
+                </li>
+                
+                <li className="space-y-2">
+                  <strong className="text-white text-lg">Content library:</strong>
+                  <p className="text-base sm:text-lg leading-relaxed">
+                    Our main focus is anime. You can find here popular, classic, as well as current titles from all genres such as action, drama, kids, fantasy, horror, mystery, police, romance, school, comedy, music, game and many more. All these titles come with English subtitles or are dubbed in many languages.
+                  </p>
+                </li>
+                
+                <li className="space-y-2">
+                  <strong className="text-white text-lg">Quality/Resolution:</strong>
+                  <p className="text-base sm:text-lg leading-relaxed">
+                    All titles are in excellent resolution, the best quality possible. ANIXYA also has a quality setting function to make sure our users can enjoy streaming no matter how fast your Internet speed is. You can stream the anime at 360p if your Internet is being ridiculous, Or if it is good, you can go with 720p or even 1080p anime.
+                  </p>
+                </li>
+                
+                <li className="space-y-2">
+                  <strong className="text-white text-lg">Streaming experience:</strong>
+                  <p className="text-base sm:text-lg leading-relaxed">
+                    Compared to other anime streaming sites, the loading speed at ANIXYA is faster. Downloading is just as easy as streaming, you won&apos;t have any problem saving the videos to watch offline later.
+                  </p>
+                </li>
+                
+                <li className="space-y-2">
+                  <strong className="text-white text-lg">Updates:</strong>
+                  <p className="text-base sm:text-lg leading-relaxed">
+                    We updates new titles as well as fulfill the requests on a daily basis so be warned, you will never run out of what to watch on ANIXYA.
+                  </p>
+                </li>
+                
+                <li className="space-y-2">
+                  <strong className="text-white text-lg">User interface:</strong>
+                  <p className="text-base sm:text-lg leading-relaxed">
+                    Our UI and UX makes it easy for anyone, no matter how old you are, how long have you been on the Internet. Literally, you can figure out how to navigate our site after a quick look. If you want to watch a specific title, search for it via the search box. If you want to look for suggestions, you can use the site&apos;s categories or simply scroll down for new releases.
+                  </p>
+                </li>
+                
+                <li className="space-y-2">
+                  <strong className="text-white text-lg">Device compatibility:</strong>
+                  <p className="text-base sm:text-lg leading-relaxed">
+                    ANIXYA works alright on both your mobile and desktop. However, we&apos;d recommend you use your desktop for a smoother streaming experience.
+                  </p>
+                </li>
+                
+                <li className="space-y-2">
+                  <strong className="text-white text-lg">Customer care:</strong>
+                  <p className="text-base sm:text-lg leading-relaxed">
+                    We are in active mode 24/7. You can always contact us for any help, query, or business-related inquiry. On our previous projects, we were known for our great customer service as we were quick to fix broken links or upload requested content.
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            {/* Closing Statement */}
+            <div className="text-center space-y-4 bg-linear-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/20">
+              <p className="text-base sm:text-lg text-white/95 leading-relaxed">
+                So if you&apos;re looking for a trustworthy and safe site for your Anime streaming, let&apos;s give ANIXYA a try. And if you like us, please help us to spread the words and do not forget to bookmark our site.
+              </p>
+              <p className="text-sm text-white/70 mt-8">
+                © ANIXYA. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
