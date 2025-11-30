@@ -9,6 +9,7 @@ declare global {
   }
 }
 
+// Animated birds background component using Vanta.js
 export default function VantaBackground() {
   const vantaRef = useRef<HTMLDivElement>(null);
   const vantaEffect = useRef<any>(null);
@@ -48,7 +49,7 @@ export default function VantaBackground() {
             separation: 25.0,
             alignment: 25.0,
             cohesion: 25.0,
-            quantity: 3.5,
+            quantity: 4.0,
           });
         }
       };
