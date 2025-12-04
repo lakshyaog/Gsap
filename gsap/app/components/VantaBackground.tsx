@@ -45,7 +45,7 @@ export default function VantaBackground() {
             colorMode: 'variance',
             birdSize: 1.2,
             wingSpan: 25.0,
-            speedLimit: 3.0,
+            speedLimit: 3.5,
             separation: 25.0,
             alignment: 25.0,
             cohesion: 25.0,

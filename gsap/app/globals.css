@@ -8,6 +8,7 @@
 }
 
 :root {
+  /* Light mode colors */
   --background: #ffffff;
   --foreground: #171717;
   --cyberpunk-yellow: #fcee0a;
