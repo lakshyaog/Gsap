@@ -29,27 +29,32 @@ export default function VantaBackground() {
       document.body.appendChild(vantaScript);
 
       vantaScript.onload = () => {
+        // Small debug to confirm Vanta loaded (safe for dev only)
+        // The log will be suppressed in production builds by bundlers if needed
+        // eslint-disable-next-line no-console
+        console.debug('[Vanta] birds script loaded');
+
         if (!vantaEffect.current && vantaRef.current && window.VANTA) {
           vantaEffect.current = window.VANTA.BIRDS({
             el: vantaRef.current,
             mouseControls: true,
             touchControls: true,
             gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
+            minHeight: 200.0,
+            minWidth: 200.0,
+            scale: 1.0,
+            scaleMobile: 1.0,
             backgroundColor: 0x0a1628,
             color1: 0x1a3a52,      // Dark blue birds
             color2: 0x2d5a7b,      // Medium blue birds
             colorMode: 'variance',
             birdSize: 1.2,
             wingSpan: 25.0,
-            speedLimit: 3.5,
+            speedLimit: 3.6,       // tiny speed nudge for smoother motion
             separation: 25.0,
             alignment: 25.0,
             cohesion: 25.0,
-            quantity: 4.0,
+            quantity: 4.2,         // slight increase for fuller effect
           });
         }
       };
