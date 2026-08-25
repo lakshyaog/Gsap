@@ -39,3 +39,7 @@ jobs:
       - name: Build Next.js
         working-directory: gsap
         run: pnpm build
+
+      - name: Build Docker image
+        working-directory: gsap
+        run: docker build -t gsap-app:ci .
