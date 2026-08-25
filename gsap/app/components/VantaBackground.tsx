@@ -4,7 +4,9 @@ import { useEffect, useRef } from 'react';
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     VANTA: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     THREE: any;
   }
 }
@@ -12,6 +14,7 @@ declare global {
 // Animated birds background component using Vanta.js
 export default function VantaBackground() {
   const vantaRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const vantaEffect = useRef<any>(null);
 
   useEffect(() => {
@@ -31,7 +34,6 @@ export default function VantaBackground() {
       vantaScript.onload = () => {
         // Small debug to confirm Vanta loaded (safe for dev only)
         // The log will be suppressed in production builds by bundlers if needed
-        // eslint-disable-next-line no-console
         console.debug('[Vanta] birds script loaded');
 
         if (!vantaEffect.current && vantaRef.current && window.VANTA) {

@@ -7,7 +7,9 @@ import { useRouter } from 'next/navigation';
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     gsap: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ScrollTrigger: any;
   }
 }
@@ -66,7 +68,7 @@ export default function Main() {
   // Auto-play carousel
   useEffect(() => {
     autoPlayRef.current = setInterval(() => {
-      nextSlide();
+      setCurrentSlide((prev) => (prev + 1) % animeCards.length);
     }, 4000); // Change slide every 4 seconds for smoother experience
 
     return () => {
@@ -74,7 +76,7 @@ export default function Main() {
         clearInterval(autoPlayRef.current);
       }
     };
-  }, []);
+  }, [animeCards.length]);
 
   useEffect(() => {
     const checkGsap = setInterval(() => {
@@ -196,7 +198,7 @@ export default function Main() {
     }, 100);
 
     return () => clearInterval(checkGsap);
-  }, [currentSlide]);
+  }, [currentSlide, animeCards.length]);
 
   return (
     <div className="relative min-h-screen">

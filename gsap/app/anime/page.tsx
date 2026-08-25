@@ -3,13 +3,14 @@
 import VantaClouds from '../components/VantaClouds';
 import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { CardBody, CardContainer, CardItem } from '../components/ui/3d-card';
 import EveryButton from '../components/ui/EveryButton';
 import PixelTransition from '../components/PixelTransition';
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     gsap: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ScrollTrigger: any;
   }
 }
@@ -305,10 +306,10 @@ export default function AnimePage() {
           <div className="max-w-7xl mx-auto">
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-12 border-2 border-white/20 text-center">
               <h2 className="text-4xl font-bold text-black font-[Bungee] mb-4">
-                Can't find your favorite?
+                Can&apos;t find your favorite?
               </h2>
               <p className="text-xl text-black/80 mb-8">
-                We're constantly adding new anime to our collection
+                We&apos;re constantly adding new anime to our collection
               </p>
               <EveryButton onClick={handleRequestAnime}>
                 Request Anime

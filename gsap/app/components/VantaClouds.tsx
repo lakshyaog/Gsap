@@ -4,13 +4,16 @@ import { useEffect, useRef } from 'react';
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     THREE: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     VANTA: any;
   }
 }
 
 export default function VantaClouds() {
   const vantaRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const vantaEffect = useRef<any>(null);
 
   useEffect(() => {

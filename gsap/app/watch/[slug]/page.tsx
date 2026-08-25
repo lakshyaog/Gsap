@@ -1,21 +1,25 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter, useParams, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+
+interface AnimeInfo {
+  title: string;
+  totalEpisodes: number;
+  image: string;
+}
 
 export default function WatchPage() {
   const router = useRouter();
-  const params = useParams();
   const searchParams = useSearchParams();
-  const slug = params.slug as string;
   const animeId = searchParams.get('id');
   
   const [currentEpisode, setCurrentEpisode] = useState(1);
   const [selectedServer, setSelectedServer] = useState('Server 1');
 
   // Anime data based on ID
-  const animeData: Record<string, any> = {
+  const animeData: Record<string, AnimeInfo> = {
     '1': { title: 'Attack on Titan', totalEpisodes: 75, image: '/attackontitan.jpeg' },
     '2': { title: 'Naruto / Naruto Shippuden', totalEpisodes: 720, image: '/N.jpeg' },
     '3': { title: 'One Piece', totalEpisodes: 1000, image: '' },
@@ -129,7 +133,7 @@ export default function WatchPage() {
             <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg p-4 shadow-lg">
               <h2 className="text-xl font-bold mb-2">You are watching Episode {currentEpisode}</h2>
               <p className="text-gray-400 text-sm mb-4">
-                If current server doesn't work please switch to other servers.
+                If current server doesn&apos;t work please switch to other servers.
               </p>
 
               {/* Server Selection */}
@@ -179,9 +183,11 @@ export default function WatchPage() {
             <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg p-6 shadow-lg">
               <div className="flex gap-4">
                 {anime.image && (
-                  <img 
+                  <Image 
                     src={anime.image} 
                     alt={anime.title}
+                    width={128}
+                    height={192}
                     className="w-32 h-48 object-cover rounded"
                   />
                 )}
@@ -195,7 +201,7 @@ export default function WatchPage() {
                     <span>Status: Completed</span>
                   </div>
                   <p className="text-gray-300 mb-4">
-                    Twelve years ago, a colossal demon fox terrorized the world. During the monster's attack on the Hidden Leaf Village, the fourth Hokage sacrificed his life to seal it within a newborn named Naruto Uzumaki.
+                    Twelve years ago, a colossal demon fox terrorized the world. During the monster&apos;s attack on the Hidden Leaf Village, the fourth Hokage sacrificed his life to seal it within a newborn named Naruto Uzumaki.
                   </p>
                   <div className="flex gap-2 text-sm">
                     <span className="px-3 py-1 bg-white/15 backdrop-blur-xl border border-white/25 rounded text-white shadow-sm">Adventure</span>
