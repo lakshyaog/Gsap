@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     gsap: any;
   }
 }

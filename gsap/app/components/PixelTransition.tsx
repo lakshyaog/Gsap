@@ -32,7 +32,8 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const isTouchDevice =
-    'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+    typeof window !== 'undefined' &&
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches);
 
   useEffect(() => {
     const pixelGridEl = pixelGridRef.current;
