@@ -43,3 +43,16 @@ jobs:
       - name: Build Docker image
         working-directory: gsap
         run: docker build -t gsap-app:ci .
+
+      - name: Run Docker container
+        run: docker run -d --name gsap-test -p 3000:3000 gsap-app:ci
+
+      - name: Wait for application
+        run: sleep 10
+
+      - name: Test application
+        run: curl --fail http://localhost:3000
+
+      - name: Stop Docker container
+        if: always()
+        run: docker rm -f gsap-test
