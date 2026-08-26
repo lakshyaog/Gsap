@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd gsap && npm run build",
-  "installCommand": "cd gsap && npm install",
+  "buildCommand": "cd gsap && pnpm build",
+  "installCommand": "cd gsap && pnpm install",
   "outputDirectory": "gsap/.next"
 }
